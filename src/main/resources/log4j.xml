@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="INFO" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="CORE" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="WARN" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="1" />
+		<param name="file" value="logs/casino-lib-core.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+
+	<appender name="SC_School" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="INFO" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="0" />
+		<param name="file" value="logs/ca_school.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="net.sc" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="SC_School" />
+	</logger>
+
+	<!-- ROOT -->
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="CORE" />
+	</root>
+</log4j:configuration>
